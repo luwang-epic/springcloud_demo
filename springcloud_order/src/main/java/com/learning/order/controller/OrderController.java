@@ -1,6 +1,7 @@
 package com.learning.order.controller;
 
 import com.learning.order.feign.MemberApiFeign;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,6 +57,28 @@ public class OrderController {
 
     @GetMapping("/getUserInfo")
     public String getUserInfo(String name) {
+        log.info("getUserInfo方法的线程池名称：{}", Thread.currentThread().getName());
         return "在订单服务中通过Feign客户端访问会员服务：" + memberApiFeign.getUserInfo(name);
+    }
+
+    /**
+     * HystrixCommand注解 是服务降级注解，当该方法阻塞时会调用fallbackMethod指定的方法
+     *      默认开启线程池隔离方式、服务降级和服务熔断 可以观察getUserInfo和getUserInfoWithHystrix方法的线程池名称
+     *      调用接口超时（默认是1秒），默认情况下业务逻辑是可以执行的，但是直接降级到fallbackMethod方法
+     * fallbackMethod：指定一个方法名
+     */
+    @HystrixCommand(fallbackMethod = "getUserInfoHystrixFallback")
+    @GetMapping("/getUserInfoWithHystrix")
+    public String getUserInfoWithHystrix(String name) {
+        log.info("getUserInfoWithHystrix方法的线程池名称：{}", Thread.currentThread().getName());
+        return "在订单服务中通过Feign客户端访问会员服务：" + memberApiFeign.getUserInfo(name);
+    }
+
+    /**
+     * 该方法的返回值和参数必须和getUserInfoWithHystrix一致，否则报错
+     */
+    public String getUserInfoHystrixFallback(String name) {
+        log.info("服务降级到getUserInfoHystrixFallback方法...");
+        return name + "返回一个友好的提示：服务降级，请稍后重试";
     }
 }

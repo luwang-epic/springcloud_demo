@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -16,10 +17,29 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
+@EnableHystrix
 public class OrderApplication {
 
     /**
      * EnableFeignClients 开启Feign客户端的权限
+     * EnableHystrix 开启Hystrix的权限
+     *
+     * 基于Hystrix解决服务雪崩效应原理：
+     *      服务降级
+     *          在高并发情况下，防止用户一直等待，使用服务降级方式（返回一个友好的提示直接给客户端，不会去处理请求，调用fallBack本地方法）
+     *          目的是为了用户体验，如：秒杀的时候提示当前请求人数过多，请稍后重试。
+     *          在规定的时间内没有响应给客户端，业务逻辑还是可以执行的，只是降级执行配置的服务降级方法
+     *
+     *      服务熔断
+     *          服务熔断目的是为了保护服务，在高并发情况下，如果请求达到了一定的极限（可以自己设置阈值），如果流量超出了设置的阈值
+     *          自动开启保护服务功能，使用服务降级方式返回一个友好的提示。熔断机制和服务降级一起使用
+     *
+     *      服务隔离
+     *          分为线程池（一般常用）和信号量隔离
+     *              线程池：每个服务接口都有自己独立的线程池，每个线程池互不影响，缺点：CUP占用率非常高。
+     *                      不是所有的接口都会采用线程池隔离，核心关键接口才会采用
+     *
+     *
      */
 
     public static void main(String[] args) {

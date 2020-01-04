@@ -1,6 +1,7 @@
 package com.learning.member.api.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wanglu
  * @date 2020/01/03
  */
+@Slf4j
 @RestController
 @RequestMapping("/member")
 public class MemberApiController {
@@ -30,6 +32,7 @@ public class MemberApiController {
         } catch (Exception e) {
 
         }
+        log.info("调用会员服务的getUserInfo方法...");
         return  String.format("调用会员服务获取用户信息: %s，该接口很慢！", name);
     }
 }
