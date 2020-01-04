@@ -1,0 +1,31 @@
+server:
+  port: 5001
+
+spring:
+  application:
+    ## 应用程序名称
+    name: springcloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          # config-server读取git环境地址
+          uri: https://github.com/luwang-epic/springcloud_demo.git
+          # 读取的文件夹
+          search-paths:
+          - global_config
+      # 读取的分支环境
+      label: master
+
+
+eureka:
+  client:
+    serviceUrl:
+      ## 需要将我的服务注册到eureka上面，这里就是eureka的地址
+      defaultZone: http://localhost:3000/eureka
+    ## 需要将我们的服务注册到eureka上面，默认为true
+    register-with-eureka: true
+    ## 需要检索服务，默认为true
+    fetch-registry: true
+
+
