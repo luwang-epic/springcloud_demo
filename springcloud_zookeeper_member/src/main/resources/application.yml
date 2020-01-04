@@ -1,0 +1,19 @@
+server:
+  port: 8010
+
+
+spring:
+  application:
+    name: zk-member
+
+  cloud:
+    zookeeper:
+      # 使用zk作为注册中心，这里配置zk的地址，需要先启动zk服务器
+      connect-string: localhost:2181
+
+      discovery:
+        # 是否启动服务注册
+        register: true
+        enabled: true
+        # zk根节点名称，默认/services, 需要提前创建好该根节点
+        root: /springcloud

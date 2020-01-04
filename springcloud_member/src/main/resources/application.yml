@@ -1,0 +1,19 @@
+server:
+  port: 3001
+
+spring:
+  application:
+    ## 应用程序名称，后面会在消费者中用到 使用ribbon实现负载均衡的时候，服务名称不能用下划线，换成中划线。
+    name: springcloud-member
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      ## 需要将我的服务注册到eureka上面，这里就是eureka的地址
+      defaultZone: http://localhost:3000/eureka
+    ## 需要将我们的服务注册到eureka上面，默认为true
+    register-with-eureka: true
+    ## 需要检索服务，默认为true
+    fetch-registry: true

@@ -1,0 +1,16 @@
+server:
+  port: 8020
+
+
+spring:
+  application:
+    name: zk-order
+
+  cloud:
+    zookeeper:
+      # 使用zk作为注册中心，这里配置zk的地址，需要先启动zk服务器
+      connect-string: localhost:2181
+      discovery:
+        register: true
+        enabled: true
+        root: /springcloud

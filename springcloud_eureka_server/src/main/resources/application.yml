@@ -1,0 +1,20 @@
+server:
+  port: 3000
+
+eureka:
+  instance:
+    ### 注册中心ip地址
+    hostname: 127.0.0.1
+    appname: eureka-center
+  client:
+    ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候需要为true）
+    registerWithEureka: false # 单点的时候设置为 false 禁止注册自身
+    ### 因为自己是注册中心，不需要去检索服务信息
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    ## 配置中大写相当于-(enableSelfPreservation 等价于  enable-self-preservation)
+    # 测试时关闭自我保护机制，保证不可用服务及时提出
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 4000
