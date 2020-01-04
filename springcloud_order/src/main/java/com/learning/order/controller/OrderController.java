@@ -1,5 +1,6 @@
 package com.learning.order.controller;
 
+import com.learning.order.feign.MemberApiFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,8 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private MemberApiFeign memberApiFeign;
 
     /**
      * 订单服务调用会员服务
@@ -40,5 +43,19 @@ public class OrderController {
         result = "订单服务调用会员服务： " + result;
         log.info("getOrder --> {}", result);
         return result;
+    }
+
+
+    /**
+     * 使用feign客户端调用member服务
+     */
+    @GetMapping("/feignMember")
+    public String getOrderByFeign() {
+        return "在订单服务中通过Feign客户端访问会员服务：" + memberApiFeign.getMember();
+    }
+
+    @GetMapping("/getUserInfo")
+    public String getUserInfo(String name) {
+        return "在订单服务中通过Feign客户端访问会员服务：" + memberApiFeign.getUserInfo(name);
     }
 }

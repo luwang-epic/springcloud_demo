@@ -21,6 +21,11 @@ public class EurekaServerApplication {
      * 但是当网络分区故障发生时，微服务与Eureka Server之间无法正常通信，而微服务本身是正常运行的，此时不应该移除这个微服务，所以引入了自我保护机制。
      *          Eureka Server 在运行期间会去统计心跳失败比例在 15 分钟之内是否低于 85%，如果低于 85%，Eureka Server 会将这些实例保护起来，让这些实例不会过期，
      *          但是在保护期内如果服务刚好这个服务提供者非正常下线了，此时服务消费者就会拿到一个无效的服务实例，此时会调用失败，对于这个问题需要服务消费者端要有一些容错机制，如重试，断路器等。
+     *
+     * springcloud中支持两种客户端调用工具
+     *      Rest RestTemplate 基本上不用的
+     *      Feign客户端工具，以后在实际开发中用的最多
+     *          Feign是一个声明式的Http客户端调用工具，采用接口+注解方式实现，易读性比较强
      */
 
     public static void main(String[] args) {

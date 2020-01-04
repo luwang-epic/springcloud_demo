@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>springcloud_demo</artifactId>
+        <groupId>com.learning</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.learning</groupId>
-    <artifactId>springcloud_demo</artifactId>
+    <artifactId>springcloud_project_framework</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>springcloud_eureka_server</module>
-        <module>springcloud_member</module>
-        <module>springcloud_order</module>
-        <module>springcloud_zookeeper_member</module>
-        <module>springcloud_zookeeper_order</module>
-        <module>springcloud_project_framework</module>
+        <module>springcloud_api_service</module>
+        <module>springcloud_member_service_impl</module>
+        <module>springcloud_order_service_impl</module>
     </modules>
 
 
@@ -42,6 +42,23 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- feign客户端 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.6.RELEASE</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -57,4 +74,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+
 </project>

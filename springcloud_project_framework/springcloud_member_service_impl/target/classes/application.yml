@@ -1,5 +1,5 @@
 server:
-  port: 3001
+  port: 4001
   tomcat:
     # tomcat的处理请求的最大线程数
     max-threads: 10
@@ -7,7 +7,7 @@ server:
 spring:
   application:
     ## 应用程序名称，后面会在消费者中用到 使用ribbon实现负载均衡的时候，服务名称不能用下划线，换成中划线。
-    name: springcloud-member
+    name: springcloud-framework-member
 
 eureka:
   instance:
