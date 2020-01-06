@@ -1,0 +1,13 @@
+zuul:
+  routes:
+    # 定义转发服务规则名称，可以随便命名，一般使用api-member等，这里简单使用api-a
+    api-a:
+      # 当客户端发送请求127.0.0.1:6001/api-member开头的 都会转发到会员服务
+      path: /api-member/**
+      # 服务别名，zuul网关默认整合ribbon 自动实现本地负载均衡轮询效果
+      serviceId: springcloud-member
+    api-b:
+      # 当客户端发送请求127.0.0.1:6001/api-order开头的 都会转发到订单服务
+      path: /api-order/**
+      # 订单服务别名
+      serviceId: springcloud-order
