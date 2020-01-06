@@ -20,4 +20,9 @@ public class OrderController {
     public String getUserByFeign(String name) {
         return orderService.getUserByFeign(name);
     }
+
+    @GetMapping("/order/timeout")
+    public String timeout() {
+        return orderService.timeoutMethod();
+    }
 }

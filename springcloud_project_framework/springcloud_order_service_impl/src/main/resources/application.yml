@@ -33,3 +33,8 @@ ribbon:
   ## 指定建立连接后从服务器读取到可用资源所用的时间，单位ms， 默认为1s
   ConnectionTimeout: 5000
 
+
+### 开启Hystrix隔离，熔断，降级服务
+feign:
+  hystrix:
+    enabled: true

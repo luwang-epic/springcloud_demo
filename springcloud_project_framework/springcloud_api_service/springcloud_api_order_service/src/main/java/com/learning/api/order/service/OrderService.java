@@ -13,4 +13,7 @@ public interface OrderService {
 
     @GetMapping("/order/getOrder")
     String getUserByFeign(String name);
+
+    @GetMapping("/order/timeout")
+    String timeoutMethod();
 }

@@ -30,5 +30,5 @@ management:
     enabled-by-default: true
     web:
       exposure:
-        # 开启所有端口
+        # 开启所有监控中心接口
         include: "*"

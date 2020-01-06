@@ -66,6 +66,10 @@ public class OrderController {
      *      默认开启线程池隔离方式、服务降级和服务熔断 可以观察getUserInfo和getUserInfoWithHystrix方法的线程池名称
      *      调用接口超时（默认是1秒），默认情况下业务逻辑是可以执行的，但是直接降级到fallbackMethod方法
      * fallbackMethod：指定一个方法名
+     *
+     * 这种方式做服务降级会多出很多重复代码，而且getUserInfoWithHystrix方法和memberApiFeign.getUserInfo是在一个线程中的
+     *      通常情况下只是调用外部memberApiFeign.getUserInfo这个接口慢，只需要将这个接口作降级就可以了
+     *      因此一般做服务降级的做法是使用类的方式，具体见springcloud_project_framework中的代码
      */
     @HystrixCommand(fallbackMethod = "getUserInfoHystrixFallback")
     @GetMapping("/getUserInfoWithHystrix")

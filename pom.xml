@@ -17,6 +17,7 @@
         <module>springcloud_project_framework</module>
         <module>springcloud_config_server</module>
         <module>springcloud_config_client</module>
+        <module>springcloud_zuul_gateway</module>
     </modules>
 
 

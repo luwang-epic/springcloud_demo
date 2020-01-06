@@ -1,6 +1,7 @@
 package com.learning.api.order.feign;
 
 import com.learning.api.member.service.MemberService;
+import com.learning.api.order.fallback.MemberServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,6 @@ import org.springframework.stereotype.Component;
  * @date 2020/01/04
  */
 @Component
-@FeignClient(value = "springcloud-framework-member")
+@FeignClient(value = "springcloud-framework-member", fallback = MemberServiceFallback.class)
 public interface MemberFeignApi extends MemberService {
 }

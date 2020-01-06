@@ -19,4 +19,8 @@ public class OrderServiceImpl implements OrderService{
     public String getUserByFeign(String name) {
         return "通过Feign客户端，调用会员服务获取用户信息：" + memberFeignApi.getUser(name);
     }
+
+    public String timeoutMethod() {
+        return memberFeignApi.timeoutMethod();
+    }
 }

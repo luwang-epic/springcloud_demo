@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member")
 public class MemberApiController {
 
+    @GetMapping("/")
+    public String index() {
+        return "我是会员服务";
+    }
+
     @GetMapping("/getMember")
     public String getMember() {
 

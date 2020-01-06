@@ -25,4 +25,9 @@ public class MemberController {
         return memberService.getUser(name);
     }
 
+    @GetMapping("/member/timeout")
+    public String timeoutMethod() {
+        log.info("MemberController timeoutMethod...");
+        return memberService.timeoutMethod();
+    }
 }
