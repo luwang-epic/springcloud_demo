@@ -46,3 +46,9 @@ feign:
 #        timeout:
 #          # hystrix禁止服务超时时间
 #          enabled: false
+
+swagger:
+  # swagger 文档扫包范围
+  base-package: com.learning.order.controller
+  title: swagger标题
+  description: swagger描述

@@ -1,5 +1,6 @@
 package com.learning.order;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -18,11 +19,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableHystrix
+@EnableSwagger2Doc
 public class OrderApplication {
 
     /**
      * EnableFeignClients 开启Feign客户端的权限
      * EnableHystrix 开启Hystrix的权限
+     * EnableSwagger2Doc 开启swagger文档服务
      *
      * 基于Hystrix解决服务雪崩效应原理：
      *      服务降级
