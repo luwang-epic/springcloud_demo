@@ -1,0 +1,4 @@
+springcloud stream消息驱动可以简化开发人员对消息中间件的使用复杂度，让系统开发人员更多的专注于与核心业务逻辑的开发。
+springcloud stream基于springboot实现，自动配置化的功能可以帮助我们快速上手学习
+springcloud stream目前只支持redis，rabbitMQ和kafka
+springcloud stream组件对rabbitMQ和kafka，进行封装成同一个API，开发人员只需要对接stream即可

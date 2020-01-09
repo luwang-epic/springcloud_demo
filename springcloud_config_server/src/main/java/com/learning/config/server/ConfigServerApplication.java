@@ -38,7 +38,7 @@ public class ConfigServerApplication {
      *      1. 默认情况下不能及时的获取实时变更的配置文件信息
      *      2. SpringCloud分布式配置中心可以采取手动刷新或者自动刷新，都不需要重启服务器
      *          手动刷新：需要人工调用接口，读取最新配置文件，同时相关bean上面需要加上@RefreshScope注解
-     *              接口为：http://springcloud-config-server/actuator/refresh  （post请求）
+     *              接口为：http://springcloud-config-client/actuator/refresh  （post请求）
      *              一般会将需要动态更新的配置放到一个配置类上面，然后在该配置类上面加上@RefreshScope注解
      *          自动刷新： 消息总线进行实时通知
      *              不建议使用自动刷新功能，对性能影响较大，建议修改完配置文件后，人工调用/actuator/refresh接口进行刷新

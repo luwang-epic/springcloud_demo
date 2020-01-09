@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RefreshScope
 public class ConfigClientController {
+
+    /**
+     * RefreshScope注解：动态刷新配置需要的注解，如：刷新name值
+     */
+
     @Value("${name}")
     private String name;
 

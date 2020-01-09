@@ -30,5 +30,5 @@ management:
     enabled-by-default: true
     web:
       exposure:
-        # 开启所有监控中心接口
+        # 开启所有监控中心接口权限，让server可以调用来刷新配置
         include: "*"

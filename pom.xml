@@ -19,6 +19,8 @@
         <module>springcloud_config_client</module>
         <module>springcloud_zuul_gateway</module>
         <module>springcloud_swagger</module>
+        <module>springcloud_stream_producer</module>
+        <module>springcloud_stream_consumer</module>
     </modules>
 
 
